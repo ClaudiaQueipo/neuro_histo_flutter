@@ -1,20 +1,28 @@
 {
-    "preguntas" : [
-        {
-            "preg" : "La sustancia gris del cerebro está dispuesta en 6 capas ó estratos",
-            "res": "V"
-        },
-        {
-            "preg" : "La barrera hematoencefálica está compuesta principalmente por los pies de las células de la oligodendroglia",
-            "res": "F"
-        },
-        {
-            "preg" : "La sustancia gris en la médula espinal ocupa la parte interna de la   misma.",
-            "res": "V"
-        },
-        {
-            "preg" : "Los cuerpos de las células de Purkinje se localizan en la capa media  de la corteza cerebelosa.",
-            "res": "V"
-        }
-    ]
+  "preguntas": [
+    {
+      "id": 1,
+      "question": "La sustancia gris del cerebro está dispuesta en 6 capas ó estratos",
+      "options": ["V", "F"],
+      "answer_index": "0"
+    },
+    {
+      "id": 2,
+      "question": "La barrera hematoencefálica está compuesta principalmente por los pies de las células de la oligodendroglia",
+      "options": ["V", "F"],
+      "answer_index": "1"
+    },
+    {
+      "id": 3,
+      "question": "La sustancia gris en la médula espinal ocupa la parte interna de la   misma.",
+      "options": ["V", "F"],
+      "answer_index": "0"
+    },
+    {
+      "id": 4,
+      "question": "Los cuerpos de las células de Purkinje se localizan en la capa media  de la corteza cerebelosa.",
+      "options": ["V", "F"],
+      "answer_index": "0"
+    }
+  ]
 }

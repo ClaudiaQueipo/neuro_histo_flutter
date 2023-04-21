@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
         routes: getApplicationRoutes(),
         onGenerateRoute: (settings) {
           return MaterialPageRoute(builder: (context) => const HomePage());
-        }
-    );
+        });
   }
 }

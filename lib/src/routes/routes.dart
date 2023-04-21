@@ -1,4 +1,4 @@
-import 'package:components_app/src/pages/topic1_page.dart';
+import 'package:components_app/src/pages/topics/topic1_page.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/home_page.dart';
