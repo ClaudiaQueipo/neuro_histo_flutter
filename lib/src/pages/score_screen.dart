@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import '../controllers/question_controller.dart';
 import 'package:get/get.dart';
 
-
 class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    QuestionController _qnController = Get.put(QuestionController());
+    QuestionController qnController = Get.put(QuestionController());
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-          
           Column(
             children: [
               Spacer(flex: 3),
@@ -25,7 +23,7 @@ class ScoreScreen extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                "${_qnController.correctAns * 10}/${4 * 10}",
+                "${qnController.numOfCorrectAns * 10}/${4 * 10}",
                 style: Theme.of(context)
                     .textTheme
                     .headline4
@@ -40,4 +38,3 @@ class ScoreScreen extends StatelessWidget {
     );
   }
 }
-

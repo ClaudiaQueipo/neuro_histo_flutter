@@ -18,10 +18,10 @@ class QuestionController extends GetxController
   bool get isAnswered => this._isAnswered;
 
   late int _correctAns;
-  int get correctAns => this._correctAns;
+  int get correctAns => _correctAns;
 
   late int _selectedAns;
-  int get selectedAns => this._selectedAns;
+  int get selectedAns => _selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
@@ -44,9 +44,8 @@ class QuestionController extends GetxController
         update();
       });
 
-    _animationController.forward();
-
     _animationController.forward().whenComplete(nextQuestion);
+
     _pageController = PageController();
     super.onInit();
   }
@@ -70,8 +69,7 @@ class QuestionController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value < 4) {
-      print(_questionNumber.value);
+    if (_questionNumber.value != 4) {
       _isAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
@@ -84,7 +82,7 @@ class QuestionController extends GetxController
       _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
-      Get.to(ScoreScreen());
+      Get.to(() => ScoreScreen());
     }
   }
 
@@ -94,7 +92,8 @@ class QuestionController extends GetxController
 
   @override
   void onClose() {
-    _animationController.dispose();
     super.onClose();
+    _animationController.dispose();
+    _pageController.dispose();
   }
 }
