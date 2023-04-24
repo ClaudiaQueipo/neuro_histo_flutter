@@ -5,19 +5,20 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../pages/score_screen.dart';
 
-class QuestionController extends GetxController
+class QuestionController2 extends GetxController
     with SingleGetTickerProviderMixin {
   late AnimationController _animationController;
   late Animation _animation;
-  final int topic;
-  late final List<Question> _questions;
 
-  QuestionController({required this.topic}) {
-    _questions = setList(topic);
-  }
-  int get currentTopic => topic;
-
-  List<Question> get questions => _questions;
+  final List<Question> _questions2 = topic2
+      .map((question) => Question(
+            id: question['id'],
+            question: question['question'],
+            options: question["options"],
+            answer: question['answer_index'],
+          )
+      )
+      .toList();
   // final Future<List<Question>> _questions = cargarData();
 
   bool _isAnswered = false;
@@ -56,29 +57,6 @@ class QuestionController extends GetxController
     super.onInit();
   }
 
-  List<Question> setList(int topic) {
-    print("Tema: $topic");
-    return (topic == 1)
-        ? topic1
-            .map((question) => Question(
-                  id: question['id'],
-                  question: question['question'],
-                  options: question["options"],
-                  answer: question['answer_index'],
-                ))
-            .toList()
-        : (topic == 2)
-            ? topic2
-                .map((question) => Question(
-                      id: question['id'],
-                      question: question['question'],
-                      options: question["options"],
-                      answer: question['answer_index'],
-                    ))
-                .toList()
-            : [];
-  }
-
   void checkAns(Question question, int selectedIndex) {
     // because once user press any option then it will run
     _isAnswered = true;
@@ -98,7 +76,7 @@ class QuestionController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != questions.length) {
+    if (_questionNumber.value != 10) {
       _isAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
@@ -111,10 +89,7 @@ class QuestionController extends GetxController
       _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
-      Get.to(() => ScoreScreen(
-            qnController: QuestionController(topic: topic),
-            topic: topic,
-          ));
+      Get.to(() => ScoreScreen(qnController:  QuestionController2(), topic: 0,));
     }
   }
 

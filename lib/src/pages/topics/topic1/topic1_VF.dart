@@ -1,5 +1,4 @@
 import 'package:components_app/src/pages/topics/components/body.dart';
-import 'package:components_app/src/pages/topics/topic1/topic1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +9,7 @@ class Topic1VF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController());
+    QuestionController _controller = Get.put(QuestionController(topic: 1));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -36,7 +35,7 @@ class Topic1VF extends StatelessWidget {
               ))
         ],
       ),
-      body: const Body(),
+      body: Body(topic: 1),
       backgroundColor: const Color.fromARGB(255, 32, 37, 69),
     );
   }

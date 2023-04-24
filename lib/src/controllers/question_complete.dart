@@ -1,4 +1,5 @@
 import 'package:components_app/src/models/question.dart';
+import 'package:components_app/src/models/question_compare.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -11,7 +12,7 @@ class QuestionCController extends GetxController
   late AnimationController _animationController;
   late Animation _animation;
 
-  List<QuestionComplete> _questions = sample_data
+  final List<QuestionComplete> _questions = sample_data
       .map(
         (question) => QuestionComplete(
             id: question['id'],
@@ -31,8 +32,7 @@ class QuestionCController extends GetxController
   late List<String> _correctAns;
   List<String> get correctAns => _correctAns;
 
-  late List<String> _selectedAns;
-  List<String> get selectedAns => _selectedAns;
+  late String _selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
@@ -61,14 +61,21 @@ class QuestionCController extends GetxController
     super.onInit();
   }
 
-  void checkAns(QuestionComplete question, List<String> selectedAns) {
+  void checkAns(QuestionComplete question, controller) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
-    _selectedAns = selectedAns;
+    _selectedAns = controller.text;
 
-    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+    for (var a in _correctAns) {
+      if (a == _selectedAns) {
+        print("Correcta: $a\nRespuesta del usuario: + $_selectedAns");
+        _numOfCorrectAns++;
+        break;
+      }
+    }
 
+    print("numero aciertos: $_numOfCorrectAns");
     // It will stop the counter
     _animationController.stop();
     update();
@@ -80,7 +87,7 @@ class QuestionCController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != 10) {
+    if (_questionNumber.value != questions.length) {
       _isAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
@@ -93,7 +100,9 @@ class QuestionCController extends GetxController
       _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
-      Get.to(() => ScoreScreen());
+      Get.to(() => ScoreScreen(
+            qnController: QuestionCController(), topic: 0,
+          ));
     }
   }
 

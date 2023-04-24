@@ -1,4 +1,6 @@
+import 'package:components_app/src/controllers/question_compare.dart';
 import 'package:components_app/src/controllers/question_complete.dart';
+import 'package:components_app/src/models/question_compare.dart';
 import 'package:components_app/src/models/question_complete.dart';
 import 'package:components_app/src/pages/topics/components/option.dart';
 import 'package:get/get.dart';
@@ -6,15 +8,16 @@ import 'package:flutter/material.dart';
 
 import '../../../models/question.dart';
 
-class QuestionCompleteCard extends StatelessWidget {
-  final QuestionComplete question;
+class QuestionCompareCard extends StatelessWidget {
+  final QuestionCompare question;
   Map<String, TextEditingController> controllers = {};
 
-  QuestionCompleteCard({super.key, required this.question});
+  QuestionCompareCard({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _controller = Get.put(QuestionCController());
+    QuestionCompareController _controller =
+        Get.put(QuestionCompareController());
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),

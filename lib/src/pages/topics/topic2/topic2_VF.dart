@@ -1,14 +1,16 @@
-import 'package:components_app/src/controllers/question_complete.dart';
-import 'package:components_app/src/pages/topics/components/body_complete.dart';
+import 'package:components_app/src/pages/topics/components/body.dart';
+import 'package:components_app/src/pages/topics/topic1/topic1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Topic1Comp extends StatelessWidget {
-  const Topic1Comp({super.key});
+import '../../../controllers/question_controller.dart';
+
+class Topic2VF extends StatelessWidget {
+  const Topic2VF({super.key});
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _controller = Get.put(QuestionCController());
+    QuestionController _controller = Get.put(QuestionController(topic: 2));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -16,8 +18,8 @@ class Topic1Comp extends StatelessWidget {
         // backgroundColor: Color.fromARGB(255, 121, 76, 227).withOpacity(0.4),
         leading: ElevatedButton(
             onPressed: () {
-              Get.delete<QuestionCController>();
-              Get.back(canPop: true);
+              Get.delete<QuestionController>();
+              Get.back();
             },
             child: Icon(Icons.arrow_back_ios),
             style: ButtonStyle(
@@ -34,7 +36,7 @@ class Topic1Comp extends StatelessWidget {
               ))
         ],
       ),
-      body: const Body(),
+      body: const Body(topic: 2),
       backgroundColor: const Color.fromARGB(255, 32, 37, 69),
     );
   }

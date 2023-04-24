@@ -1,20 +1,27 @@
-import 'package:get/get.dart';
-import 'package:components_app/src/pages/topics/components/progress_bar.dart';
-import 'package:components_app/src/pages/topics/components/question_card.dart';
-import 'package:flutter/material.dart';
-import 'package:components_app/src/models/question.dart';
+import 'dart:ui';
 
-import '../../../controllers/question_controller.dart';
+import 'package:components_app/src/controllers/question_compare.dart';
+import 'package:components_app/src/controllers/question_complete.dart';
+import 'package:components_app/src/pages/topics/components/question_card_compare.dart';
+import 'package:get/get.dart';
+import 'package:components_app/src/controllers/question_controller.dart';
+import 'package:components_app/src/pages/topics/components/progress_bar.dart';
+import 'package:components_app/src/pages/topics/components/questionC_card.dart';
+import 'package:flutter/material.dart';
+
+import '../../../models/question.dart';
 
 class Body extends StatelessWidget {
-  final int topic;
-  const Body({super.key, required this.topic});
+  const Body({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController =
-        Get.put(QuestionController(topic: topic));
-    print("Topic -> $topic");
+    QuestionCompareController _questionController =
+        Get.put(QuestionCompareController());
+    Map<String, TextEditingController> controllers = {};
+
     return Stack(children: [
       SafeArea(
         child: Column(
@@ -23,7 +30,7 @@ class Body extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: ProgressBar(topic: topic),
+              child: ProgressBar(controller: _questionController, topic: 1,),
             ),
             SizedBox(height: 10),
             Padding(
@@ -50,13 +57,12 @@ class Body extends StatelessWidget {
             Expanded(
               child: PageView.builder(
                 // Block swipe to next qn
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
                 onPageChanged: _questionController.updateTheQnNum,
                 itemCount: _questionController.questions.length,
-                itemBuilder: (context, index) => QuestionCard(
+                itemBuilder: (context, index) => QuestionCompareCard(
                   question: _questionController.questions[index],
-                  topic: topic,
                 ),
               ),
             ),

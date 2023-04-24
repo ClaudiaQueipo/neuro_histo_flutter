@@ -1,11 +1,14 @@
+import 'package:components_app/src/controllers/question_controller.dart';
+import 'package:components_app/src/pages/topics/topic1/topic1_VF.dart';
+import 'package:components_app/src/providers/topic1_provider.dart';
 import 'package:components_app/src/widgets/homePWidg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../components/body.dart';
 
-class Topic1Page extends StatelessWidget {
-  const Topic1Page({super.key});
+class Topic2Page extends StatelessWidget {
+  const Topic2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +24,21 @@ class Topic1Page extends StatelessWidget {
                   "Verdadero o Falso",
                   "Responde preguntas de verdadero o falso para probar tus conocimientos",
                   context,
-                  'study/topic1/VF',
+                  "study/topic2/VF",
                 ),
                 SizedBox(height: 15.0),
                 showCategory(
                   "Completa",
                   "Completa los espacios en blanco en las preguntas dadas",
                   context,
-                  "study/topic1/Complete",
+                  "study/topic2/Complete",
                 ),
                 SizedBox(height: 15.0),
                 showCategory(
                   "Comparar",
                   "Compara la dentrita con el axón atendiendo a ciertos criterios",
                   context,
-                  "study/topic1/Compare",
+                  "study/topic2/Compare",
                 ),
                 SizedBox(height: 15.0),
               ],

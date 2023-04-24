@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import '../../../models/question.dart';
 
 class QuestionCard extends StatelessWidget {
-  const QuestionCard({super.key, required this.question});
+  final int topic;
+  const QuestionCard({super.key, required this.question, required this.topic});
 
   final Question question;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController());
+    QuestionController _controller = Get.put(QuestionController(topic: topic));
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),
@@ -30,6 +31,7 @@ class QuestionCard extends StatelessWidget {
               (index) => Option(
                   text: question.options[index],
                   index: index,
+                  topic: topic,
                   press: () {
                     _controller.checkAns(question, index);
                   }))

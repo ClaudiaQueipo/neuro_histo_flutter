@@ -1,37 +1,40 @@
 import 'package:components_app/src/models/question.dart';
+import 'package:components_app/src/models/question_compare.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import '../models/question_complete.dart';
 import '../pages/score_screen.dart';
 
-class QuestionController extends GetxController
+class QuestionCompareController extends GetxController
     with SingleGetTickerProviderMixin {
   late AnimationController _animationController;
   late Animation _animation;
-  final int topic;
-  late final List<Question> _questions;
 
-  QuestionController({required this.topic}) {
-    _questions = setList(topic);
-  }
-  int get currentTopic => topic;
+  final List<QuestionCompare> _questions = questionsCompare
+      .map((question) => QuestionCompare(
+          id: question['id'],
+          question: question['question'],
+          answer: question['answer'],
+          fields: question["fields"]))
+      .toList();
 
-  List<Question> get questions => _questions;
+  List<QuestionCompare> get questions => _questions;
+
   // final Future<List<Question>> _questions = cargarData();
 
   bool _isAnswered = false;
-  bool get isAnswered => this._isAnswered;
+  bool get isAnswered => _isAnswered;
 
-  late int _correctAns;
-  int get correctAns => _correctAns;
+  late List<String> _correctAns;
+  List<String> get correctAns => _correctAns;
 
-  late int _selectedAns;
-  int get selectedAns => _selectedAns;
+  late String _selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
-  RxInt get questionNumber => this._questionNumber;
+  RxInt get questionNumber => _questionNumber;
 
   int _numOfCorrectAns = 0;
   int get numOfCorrectAns => this._numOfCorrectAns;
@@ -55,38 +58,20 @@ class QuestionController extends GetxController
     _pageController = PageController();
     super.onInit();
   }
-
-  List<Question> setList(int topic) {
-    print("Tema: $topic");
-    return (topic == 1)
-        ? topic1
-            .map((question) => Question(
-                  id: question['id'],
-                  question: question['question'],
-                  options: question["options"],
-                  answer: question['answer_index'],
-                ))
-            .toList()
-        : (topic == 2)
-            ? topic2
-                .map((question) => Question(
-                      id: question['id'],
-                      question: question['question'],
-                      options: question["options"],
-                      answer: question['answer_index'],
-                    ))
-                .toList()
-            : [];
-  }
-
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(QuestionCompare question, controller) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
-    _selectedAns = selectedIndex;
+    _selectedAns = controller.text;
 
-    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+    for (var a in _correctAns) {
+      if (a == _selectedAns) {
+        print("Correcta: $a\nRespuesta del usuario: + $_selectedAns");
+        _numOfCorrectAns++;
+      }
+    }
 
+    print("numero aciertos: $_numOfCorrectAns");
     // It will stop the counter
     _animationController.stop();
     update();
@@ -112,8 +97,8 @@ class QuestionController extends GetxController
     } else {
       // Get package provide us simple way to naviigate another page
       Get.to(() => ScoreScreen(
-            qnController: QuestionController(topic: topic),
-            topic: topic,
+            qnController: QuestionCompareController(),
+            topic: 0,
           ));
     }
   }

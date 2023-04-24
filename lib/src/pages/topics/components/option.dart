@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Option extends StatelessWidget {
+  final int topic;
   const Option({
     super.key,
     required this.text,
     required this.index,
     required this.press,
+    required this.topic,
   });
   final String text;
   final int index;
@@ -17,7 +19,7 @@ class Option extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
-        init: QuestionController(),
+        init: QuestionController(topic: topic),
         builder: (qnController) {
           Color getTheRightColor() {
             if (qnController.isAnswered) {

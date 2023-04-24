@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:components_app/src/controllers/question_complete.dart';
 import 'package:get/get.dart';
-import 'package:components_app/src/controllers/question_controller.dart';
 import 'package:components_app/src/pages/topics/components/progress_bar.dart';
 import 'package:components_app/src/pages/topics/components/questionC_card.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionCController _questionController = Get.put(QuestionCController());
+    Map<String, TextEditingController> controllers = {};
 
     return Stack(children: [
       SafeArea(
@@ -26,7 +26,10 @@ class Body extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: ProgressBar(),
+              child: ProgressBar(
+                controller: _questionController,
+                topic: 1,
+              ),
             ),
             SizedBox(height: 10),
             Padding(
@@ -53,12 +56,13 @@ class Body extends StatelessWidget {
             Expanded(
               child: PageView.builder(
                 // Block swipe to next qn
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
                 onPageChanged: _questionController.updateTheQnNum,
                 itemCount: _questionController.questions.length,
                 itemBuilder: (context, index) => QuestionCompleteCard(
-                    question: _questionController.questions[index]),
+                  question: _questionController.questions[index],
+                ),
               ),
             ),
           ],
