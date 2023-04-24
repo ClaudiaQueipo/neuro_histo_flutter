@@ -1,9 +1,10 @@
 import 'dart:ui';
 
+import 'package:components_app/src/controllers/question_complete.dart';
 import 'package:get/get.dart';
 import 'package:components_app/src/controllers/question_controller.dart';
 import 'package:components_app/src/pages/topics/components/progress_bar.dart';
-import 'package:components_app/src/pages/topics/components/question_card.dart';
+import 'package:components_app/src/pages/topics/components/questionC_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/question.dart';
@@ -15,7 +16,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionCController _questionController = Get.put(QuestionCController());
 
     return Stack(children: [
       SafeArea(
@@ -37,7 +38,9 @@ class Body extends StatelessWidget {
                           "Pregunta ${_questionController.questionNumber.value}",
                       style: TextStyle(color: Colors.white, fontSize: 28),
                       children: [
-                        TextSpan(text: "/10", style: TextStyle(fontSize: 22))
+                        TextSpan(
+                            text: "/${_questionController.questions.length}",
+                            style: TextStyle(fontSize: 22))
                       ],
                     ),
                   ),
@@ -48,29 +51,16 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Expanded(
-              child: FutureBuilder<List<Question>>(
-                future: _questionController.questions,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasError) {
-                      return Center(child: Text('Error: \${snapshot.error}'));
-                    } else {
-                      return PageView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: _questionController.pageController,
-                        onPageChanged: _questionController.updateTheQnNum,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) => QuestionCard(
-                          question: snapshot.data![index],
-                        ),
-                      );
-                    }
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
+              child: PageView.builder(
+                // Block swipe to next qn
+                physics: NeverScrollableScrollPhysics(),
+                controller: _questionController.pageController,
+                onPageChanged: _questionController.updateTheQnNum,
+                itemCount: _questionController.questions.length,
+                itemBuilder: (context, index) => QuestionCompleteCard(
+                    question: _questionController.questions[index]),
               ),
-            )
+            ),
           ],
         ),
       )

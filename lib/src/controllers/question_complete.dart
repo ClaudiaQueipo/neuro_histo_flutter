@@ -3,28 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import '../models/question_complete.dart';
 import '../pages/score_screen.dart';
 
-class QuestionController extends GetxController
+class QuestionCController extends GetxController
     with SingleGetTickerProviderMixin {
   late AnimationController _animationController;
   late Animation _animation;
 
-  Future<List<Question>> get questions => cargarData();
+  List<QuestionComplete> _questions = sample_data
+      .map(
+        (question) => QuestionComplete(
+            id: question['id'],
+            question: question['question'],
+            answer: question['answer'],
+            fields: question['fields']),
+      )
+      .toList();
+
+  List<QuestionComplete> get questions => _questions;
+
   // final Future<List<Question>> _questions = cargarData();
 
   bool _isAnswered = false;
-  bool get isAnswered => this._isAnswered;
+  bool get isAnswered => _isAnswered;
 
-  late int _correctAns;
-  int get correctAns => _correctAns;
+  late List<String> _correctAns;
+  List<String> get correctAns => _correctAns;
 
-  late int _selectedAns;
-  int get selectedAns => _selectedAns;
+  late List<String> _selectedAns;
+  List<String> get selectedAns => _selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
-  RxInt get questionNumber => this._questionNumber;
+  RxInt get questionNumber => _questionNumber;
 
   int _numOfCorrectAns = 0;
   int get numOfCorrectAns => this._numOfCorrectAns;
@@ -49,11 +61,11 @@ class QuestionController extends GetxController
     super.onInit();
   }
 
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(QuestionComplete question, List<String> selectedAns) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
-    _selectedAns = selectedIndex;
+    _selectedAns = selectedAns;
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 

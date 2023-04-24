@@ -33,7 +33,7 @@ _cardTipo1(title, subtitle, BuildContext context) {
           children: [
             TextButton(
               child:
-                  Text("Estudiar ahora", style: TextStyle(color: Colors.white)),
+                  Text("Entrar", style: TextStyle(color: Colors.white)),
               onPressed: () {
                 Navigator.pushNamed(context, "study/topic1");
               },

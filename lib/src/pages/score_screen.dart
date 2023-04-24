@@ -23,7 +23,7 @@ class ScoreScreen extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                "${qnController.numOfCorrectAns * 10}/${4 * 10}",
+                "${qnController.numOfCorrectAns * 10}/${100}",
                 style: Theme.of(context)
                     .textTheme
                     .headline4

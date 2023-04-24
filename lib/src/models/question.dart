@@ -14,7 +14,7 @@ class Question {
       required this.question,
       required this.options,
       required this.answer});
-  
+
   int get getAnswerIndex => this.answer;
 
   factory Question.fromJson(Map<String, dynamic> json) {
@@ -34,7 +34,7 @@ Future<List<Question>> cargarData() async {
   // Decodificar el archivo JSON y mapear los datos en una lista de preguntas
   Map dataMap = json.decode(data);
   List<Question> tema1 =
-      (dataMap["preguntas"] as List).map((e) => Question.fromJson(e)).toList();
+      (dataMap["6"] as List).map((e) => Question.fromJson(e)).toList();
 
   // Devolver la lista de preguntas
   return tema1;

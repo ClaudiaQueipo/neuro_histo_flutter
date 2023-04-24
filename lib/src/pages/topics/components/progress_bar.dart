@@ -43,7 +43,7 @@ class ProgressBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${(controller.animation.value * 60).round()} seg",
+                        "${(controller.animation.value * 30).round()} seg",
                         style: TextStyle(color: Colors.white),
                       ),
                       Icon(

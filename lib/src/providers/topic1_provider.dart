@@ -13,7 +13,7 @@ class _Topic1Provider {
     final resp = await rootBundle.loadString("data/tema1.json");
 
     Map dataMap = json.decode(resp);
-    tema1 = dataMap["preguntas"];
+    tema1 = dataMap["6"];
 
     return tema1;
   }
