@@ -366,4 +366,12 @@ const List topic2Rel = [
   },
 ];
 
-// const List topic3VF = 
+const List topic2P6 = [
+  {
+    "id": 1,
+    "question":
+        "Observe el esquema que se muestra a continuación y responda:\n1- El órgano que se representa es:",
+    "options": ["Cerebro", "Cerebelo", "Médula espinal"],
+    "answer_index": 0
+  },
+];

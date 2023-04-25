@@ -20,13 +20,13 @@ dynamic myHomeBody() {
 
 Widget homeInfo() {
   return Container(
-    padding: EdgeInsets.all(8.0),
-    margin: EdgeInsets.all(8.0),
-    child: Text(
-      "Texto",
-      style: TextStyle(color: Colors.white),
-    ),
-  );
+      padding: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/home_img.jpg'),
+        fit: BoxFit.cover,
+      )));
 }
 
 // myBottomBar(BuildContext context) {
@@ -108,4 +108,3 @@ myBottomBar(BuildContext context) {
     ),
   );
 }
-
