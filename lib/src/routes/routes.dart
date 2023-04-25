@@ -2,6 +2,7 @@ import 'package:components_app/src/pages/topics/topic1/topic1_VF.dart';
 import 'package:components_app/src/pages/topics/topic1/topic1_comp.dart';
 import 'package:components_app/src/pages/topics/topic1/topic1_compare.dart';
 import 'package:components_app/src/pages/topics/topic1/topic1_page.dart';
+import 'package:components_app/src/pages/topics/topic2/topic2_relacione.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/home_page.dart';
@@ -19,6 +20,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     'study/topic1/Compare': (context) => const Topic1Compare(),
     'study/topic2': (context) => const Topic2Page(),
     'study/topic2/VF': (context) => const Topic2VF(),
+    'study/topic2/Relacione': (context) => const Topic2Rel(),
     // 'study/topic2/Complete': (context) => const Topic1Comp(),
     // 'study/topic2/Compare': (context) => const Topic1Compare(),
   };

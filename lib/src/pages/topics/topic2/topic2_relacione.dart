@@ -1,16 +1,15 @@
-
 import 'package:components_app/src/pages/topics/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/question_controller.dart';
 
-class Topic2VF extends StatelessWidget {
-  const Topic2VF({super.key});
+class Topic2Rel extends StatelessWidget {
+  const Topic2Rel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController(topic: 2));
+    QuestionController _controller = Get.put(QuestionController(topic: 3));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -36,7 +35,7 @@ class Topic2VF extends StatelessWidget {
               ))
         ],
       ),
-      body: Body(topic: 2),
+      body: Body(topic: 3),
       backgroundColor: const Color.fromARGB(255, 32, 37, 69),
     );
   }

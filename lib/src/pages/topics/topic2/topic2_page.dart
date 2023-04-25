@@ -28,10 +28,10 @@ class Topic2Page extends StatelessWidget {
                 ),
                 SizedBox(height: 15.0),
                 showCategory(
-                  "Completa",
-                  "Completa los espacios en blanco en las preguntas dadas",
+                  "Relacione",
+                  "Questionario de preguntas",
                   context,
-                  "study/topic2/Complete",
+                  "study/topic2/Relacione",
                 ),
                 SizedBox(height: 15.0),
                 showCategory(

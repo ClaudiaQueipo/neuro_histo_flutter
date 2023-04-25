@@ -25,7 +25,7 @@ class ProgressBar extends StatelessWidget {
       return _buildQuestionCompareProgressBar(context);
     } else {
       // Devolver un mensaje de error en caso de que el controlador sea nulo o no sea del tipo correcto
-      return const Text('Error: Invalid controller type');
+      return _buildQuestionProgressBar(context);
     }
   }
 

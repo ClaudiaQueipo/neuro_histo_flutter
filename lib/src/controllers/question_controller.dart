@@ -76,6 +76,15 @@ class QuestionController extends GetxController
                       answer: question['answer_index'],
                     ))
                 .toList()
+        : (topic == 3)
+            ? topic2Rel
+                .map((question) => Question(
+                      id: question['id'],
+                      question: question['question'],
+                      options: question["options"],
+                      answer: question['answer_index'],
+                    ))
+                .toList()
             : [];
   }
 

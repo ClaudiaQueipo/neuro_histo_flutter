@@ -8,7 +8,7 @@ import '../../../controllers/question_controller.dart';
 
 class Body extends StatelessWidget {
   final int topic;
-  const Body({super.key, required this.topic});
+  Body({super.key, required this.topic});
 
   @override
   Widget build(BuildContext context) {

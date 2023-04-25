@@ -14,7 +14,7 @@ class ScoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // QuestionController qnController = Get.put(QuestionController());
     if (qnController is QuestionController) {
-      QuestionController qnController = Get.put(QuestionController(topic: 1));
+      QuestionController qnController = Get.put(QuestionController(topic: topic));
       return Scaffold(
         body: Stack(
           fit: StackFit.expand,

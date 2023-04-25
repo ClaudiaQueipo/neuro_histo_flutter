@@ -244,3 +244,126 @@ const List topic2 = [
     "answer_index": 0
   }
 ];
+
+const List topic2Rel = [
+  {
+    "id": 1,
+    "question": "Adherida con firmeza al periostio de cráneo y raquis",
+    "options": [
+      "Duramadre",
+      "Aracnoides",
+      "Piamadre",
+      "Todas las anteriores",
+      "Ninguna de las anteriores"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 2,
+    "question": "Forma trabéculas entre las cuales circula el líquido CR",
+    "options": [
+      "Duramadre",
+      "Aracnoides",
+      "Piamadre",
+      "Todas las anteriores",
+      "Ninguna de las anteriores"
+    ],
+    "answer_index": 1
+  },
+  {
+    "id": 3,
+    "question":
+        "Adherida con firmeza al la superficiedel encéfalo y de la médula espinal",
+    "options": [
+      "Duramadre",
+      "Aracnoides",
+      "Piamadre",
+      "Todas las anteriores",
+      "Ninguna de las anteriores"
+    ],
+    "answer_index": 2
+  },
+  {
+    "id": 4,
+    "question":
+        "Cubre los capilares en la sustancia gris para formar la barrera hematoencefálica",
+    "options": [
+      "Duramadre",
+      "Aracnoides",
+      "Piamadre",
+      "Todas las anteriores",
+      "Ninguna de las anteriores"
+    ],
+    "answer_index": 1
+  },
+  {
+    "id": 5,
+    "question": "Compuesta principalmente por tejido conjuntivo denso",
+    "options": [
+      "Duramadre",
+      "Aracnoides",
+      "Piamadre",
+      "Todas las anteriores",
+      "Ninguna de las anteriores"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 6,
+    "question": "Los astrocitos son en su mayor parte de tipo fibroso.",
+    "options": [
+      "Sustancia gris",
+      "Sustancia blanca",
+      "Ambas",
+      "Ninguna",
+    ],
+    "answer_index": 1
+  },
+  {
+    "id": 7,
+    "question": "Contiene oligodendrocitos.",
+    "options": [
+      "Sustancia gris",
+      "Sustancia blanca",
+      "Ambas",
+      "Ninguna",
+    ],
+    "answer_index": 2
+  },
+  {
+    "id": 8,
+    "question":
+        "Se sitúa externamente formando las cortezas cerebral y cerebelosa ",
+    "options": [
+      "Sustancia gris",
+      "Sustancia blanca",
+      "Ambas",
+      "Ninguna",
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 9,
+    "question": "Contiene cuerpos neuronales.",
+    "options": [
+      "Sustancia gris",
+      "Sustancia blanca",
+      "Ambas",
+      "Ninguna",
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 10,
+    "question": "Contiene en su mayor parte axones y células de la neuroglia. ",
+    "options": [
+      "Sustancia gris",
+      "Sustancia blanca",
+      "Ambas",
+      "Ninguna",
+    ],
+    "answer_index": 1
+  },
+];
+
+// const List topic3VF = 
