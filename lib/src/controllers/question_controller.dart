@@ -57,11 +57,12 @@ class QuestionController extends GetxController
   }
 
   List<Question> setList(int topic) {
-    print("Tema: $topic");
+    print("Tema question_controller: $topic");
     return (topic == 1)
         ? topic1
             .map((question) => Question(
                   id: question['id'],
+                  image: question['image'],
                   question: question['question'],
                   options: question["options"],
                   answer: question['answer_index'],
@@ -71,21 +72,33 @@ class QuestionController extends GetxController
             ? topic2
                 .map((question) => Question(
                       id: question['id'],
+                      image: question['image'],
                       question: question['question'],
                       options: question["options"],
                       answer: question['answer_index'],
                     ))
                 .toList()
-        : (topic == 3)
-            ? topic2Rel
-                .map((question) => Question(
-                      id: question['id'],
-                      question: question['question'],
-                      options: question["options"],
-                      answer: question['answer_index'],
-                    ))
-                .toList()
-            : [];
+            : (topic == 3)
+                ? topic2Rel
+                    .map((question) => Question(
+                          id: question['id'],
+                          image: question['image'],
+                          question: question['question'],
+                          options: question["options"],
+                          answer: question['answer_index'],
+                        ))
+                    .toList()
+                : (topic == 4)
+                    ? topic2P6
+                        .map((question) => Question(
+                              id: question['id'],
+                              image: question['image'],
+                              question: question['question'],
+                              options: question["options"],
+                              answer: question['answer_index'],
+                            ))
+                        .toList()
+                    : [];
   }
 
   void checkAns(Question question, int selectedIndex) {

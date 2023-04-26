@@ -12,16 +12,13 @@ class QuestionCController extends GetxController
   late AnimationController _animationController;
   late Animation _animation;
 
-  final List<QuestionComplete> _questions = sample_data
-      .map(
-        (question) => QuestionComplete(
-            id: question['id'],
-            question: question['question'],
-            answer: question['answer'],
-            fields: question['fields']),
-      )
-      .toList();
+  final int topic;
 
+  late final List<QuestionComplete> _questions;
+
+  QuestionCController({required this.topic}) {
+    _questions = setList(topic);
+  }
   List<QuestionComplete> get questions => _questions;
 
   // final Future<List<Question>> _questions = cargarData();
@@ -59,6 +56,31 @@ class QuestionCController extends GetxController
 
     _pageController = PageController();
     super.onInit();
+  }
+
+  List<QuestionComplete> setList(int topic) {
+    print("Tema question_controller: $topic");
+    return (topic == 5)
+        ? sample_data
+            .map((question) => QuestionComplete(
+                  id: question['id'],
+                  image: question['image'],
+                  question: question['question'],
+                  answer: question['answer'],
+                  fields: question["fields"],
+                ))
+            .toList()
+        : (topic == 6)
+            ? topic2Complete
+                .map((question) => QuestionComplete(
+                      id: question['id'],
+                      image: question['image'],
+                      question: question['question'],
+                      answer: question['answer'],
+                      fields: question["fields"],
+                    ))
+                .toList()
+            : [];
   }
 
   void checkAns(QuestionComplete question, controller) {
@@ -101,7 +123,8 @@ class QuestionCController extends GetxController
     } else {
       // Get package provide us simple way to naviigate another page
       Get.to(() => ScoreScreen(
-            qnController: QuestionCController(), topic: 0,
+            qnController: QuestionCController(topic: topic),
+            topic: 0,
           ));
     }
   }

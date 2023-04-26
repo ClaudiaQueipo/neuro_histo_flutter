@@ -14,6 +14,7 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController(topic: topic));
+    print(question.image);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),
@@ -25,6 +26,7 @@ class QuestionCard extends StatelessWidget {
             question.question,
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
+          putImage(question),
           SizedBox(height: 10.0),
           ...List.generate(
               question.options.length,
@@ -38,5 +40,15 @@ class QuestionCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+Widget putImage(Question question) {
+  if (question.image != null) {
+    return Image(
+      image: AssetImage(question.image!),
+    );
+  } else {
+    return SizedBox.shrink(); // Esto hace que no se renderice nada
   }
 }

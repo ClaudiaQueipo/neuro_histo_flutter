@@ -45,7 +45,7 @@ class ScoreScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 32, 37, 69),
       );
     } else {
-      QuestionCController qnController = Get.put(QuestionCController());
+      QuestionCController qnController = Get.put(QuestionCController(topic: topic));
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 121, 76, 227).withOpacity(0.4),

@@ -14,7 +14,6 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     QuestionController _questionController =
         Get.put(QuestionController(topic: topic));
-    print("Topic -> $topic");
     return Stack(children: [
       SafeArea(
         child: Column(

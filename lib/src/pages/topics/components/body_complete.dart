@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 import '../../../models/question.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    super.key,
-  });
+  final int topic;
+  const Body({super.key, required this.topic});
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _questionController = Get.put(QuestionCController());
+    QuestionCController _questionController =
+        Get.put(QuestionCController(topic: topic));
     Map<String, TextEditingController> controllers = {};
 
     return Stack(children: [
@@ -62,6 +62,7 @@ class Body extends StatelessWidget {
                 itemCount: _questionController.questions.length,
                 itemBuilder: (context, index) => QuestionCompleteCard(
                   question: _questionController.questions[index],
+                  topic: topic,
                 ),
               ),
             ),

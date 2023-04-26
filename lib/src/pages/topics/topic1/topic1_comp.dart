@@ -1,4 +1,5 @@
 import 'package:components_app/src/controllers/question_complete.dart';
+import 'package:components_app/src/models/question.dart';
 import 'package:components_app/src/pages/topics/components/body_complete.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ class Topic1Comp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _controller = Get.put(QuestionCController());
+    QuestionCController _controller = Get.put(QuestionCController(topic: 5));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -34,7 +35,9 @@ class Topic1Comp extends StatelessWidget {
               ))
         ],
       ),
-      body: const Body(),
+      body: const Body(
+        topic: 5,
+      ),
       backgroundColor: const Color.fromARGB(255, 32, 37, 69),
     );
   }

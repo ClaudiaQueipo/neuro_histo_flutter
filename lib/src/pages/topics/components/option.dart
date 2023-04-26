@@ -54,7 +54,9 @@ class Option extends StatelessWidget {
                   children: [
                     Text(
                       "${index + 1} $text",
-                      style: TextStyle(color: Color(0xFFC1C1C1), fontSize: 16),
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 180, 180, 180),
+                          fontSize: 12),
                     ),
                     Container(
                       height: 26,

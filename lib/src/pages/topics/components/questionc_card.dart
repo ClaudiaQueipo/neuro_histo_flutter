@@ -3,18 +3,24 @@ import 'package:components_app/src/models/question_complete.dart';
 import 'package:components_app/src/pages/topics/components/option.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'question_card.dart';
 
 import '../../../models/question.dart';
 
 class QuestionCompleteCard extends StatelessWidget {
   final QuestionComplete question;
-  Map<String, TextEditingController> controllers = {};
 
-  QuestionCompleteCard({super.key, required this.question});
+  final int topic;
+
+  QuestionCompleteCard(
+      {super.key, required this.question, required this.topic});
+
+  Map<String, TextEditingController> controllers = {};
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _controller = Get.put(QuestionCController());
+    QuestionCController _controller =
+        Get.put(QuestionCController(topic: topic));
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),
@@ -26,6 +32,7 @@ class QuestionCompleteCard extends StatelessWidget {
             question.question,
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
+          putImage(question),
           SizedBox(height: 30.0),
           ...List.generate(
             question.fields.length,
@@ -68,4 +75,14 @@ Widget field(String fieldName, Map<String, TextEditingController> controllers) {
       )
     ],
   );
+}
+
+Widget putImage(QuestionComplete question) {
+  if (question.image != null) {
+    return Image(
+      image: AssetImage(question.image!),
+    );
+  } else {
+    return SizedBox.shrink(); // Esto hace que no se renderice nada
+  }
 }
