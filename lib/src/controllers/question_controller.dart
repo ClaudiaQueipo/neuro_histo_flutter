@@ -98,7 +98,17 @@ class QuestionController extends GetxController
                               answer: question['answer_index'],
                             ))
                         .toList()
-                    : [];
+                    : (topic == 8)
+                        ? topic4p3
+                            .map((question) => Question(
+                                  id: question['id'],
+                                  image: question['image'],
+                                  question: question['question'],
+                                  options: question["options"],
+                                  answer: question['answer_index'],
+                                ))
+                            .toList()
+                        : [];
   }
 
   void checkAns(Question question, int selectedIndex) {

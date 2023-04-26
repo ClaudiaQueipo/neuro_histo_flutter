@@ -27,9 +27,9 @@ class QuestionCompareCard extends StatelessWidget {
         children: [
           Text(
             question.question,
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            style: TextStyle(color: Colors.black, fontSize: 13),
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 5.0),
           ...List.generate(
             question.fields.length,
             (index) => field(question.fields.elementAt(index), controllers),

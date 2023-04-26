@@ -80,18 +80,38 @@ class QuestionCController extends GetxController
                       fields: question["fields"],
                     ))
                 .toList()
-            : [];
+            : (topic == 7)
+                ? topic3Complete
+                    .map((question) => QuestionComplete(
+                          id: question['id'],
+                          image: question['image'],
+                          question: question['question'],
+                          answer: question['answer'],
+                          fields: question["fields"],
+                        ))
+                    .toList()
+                : (topic == 9)
+                    ? topic4
+                        .map((question) => QuestionComplete(
+                              id: question['id'],
+                              image: question['image'],
+                              question: question['question'],
+                              answer: question['answer'],
+                              fields: question["fields"],
+                            ))
+                        .toList()
+                    : [];
   }
 
-  void checkAns(QuestionComplete question, controller) {
+  bool checkAns(QuestionComplete question, controller) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = controller.text;
-
+    bool isCorrect = false;
     for (var a in _correctAns) {
       if (a == _selectedAns) {
-        print("Correcta: $a\nRespuesta del usuario: + $_selectedAns");
+        isCorrect = true;
         _numOfCorrectAns++;
         break;
       }
@@ -106,6 +126,7 @@ class QuestionCController extends GetxController
     Future.delayed(const Duration(seconds: 2), () {
       nextQuestion();
     });
+    return isCorrect;
   }
 
   void nextQuestion() {

@@ -1,14 +1,11 @@
-import 'package:components_app/src/controllers/question_controller.dart';
-import 'package:components_app/src/pages/topics/topic1/topic1_VF.dart';
-import 'package:components_app/src/providers/topic1_provider.dart';
 import 'package:components_app/src/widgets/homePWidg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../components/body.dart';
 
-class Topic2Page extends StatelessWidget {
-  const Topic2Page({super.key});
+class Topic4Page extends StatelessWidget {
+  const Topic4Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,32 +17,19 @@ class Topic2Page extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.all(10.0),
               children: [
-                showCategory(
-                  "Seleccione",
-                  "Seleccione la respuesta correcta",
-                  context,
-                  "study/topic2/VF",
-                ),
                 SizedBox(height: 15.0),
                 showCategory(
-                  "Relacione",
-                  "Questionario de preguntas",
+                  "Selecciona",
+                  "Completa los espacios en blanco de acuerdo a una imagen los aspectos señalados",
                   context,
-                  "study/topic2/Relacione",
-                ),
-                SizedBox(height: 15.0),
-                showCategory(
-                  "Indentifica",
-                  "Identifica de acuerdo a una imagen los aspectos señalados",
-                  context,
-                  "study/topic2/Imagenes",
+                  "study/topic4/VF",
                 ),
                 SizedBox(height: 15.0),
                 showCategory(
                   "Completa",
                   "Completa los espacios en blanco de acuerdo a una imagen los aspectos señalados",
                   context,
-                  "study/topic2/Complete",
+                  "study/topic4/Complete",
                 ),
                 SizedBox(height: 15.0),
               ],

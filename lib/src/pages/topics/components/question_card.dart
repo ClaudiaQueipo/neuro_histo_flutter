@@ -14,7 +14,7 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController(topic: topic));
-    print(question.image);
+   
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),
@@ -24,7 +24,7 @@ class QuestionCard extends StatelessWidget {
         children: [
           Text(
             question.question,
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            style: TextStyle(color: Colors.black, fontSize: 13),
           ),
           putImage(question),
           SizedBox(height: 10.0),

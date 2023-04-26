@@ -7,20 +7,32 @@ import 'question_card.dart';
 
 import '../../../models/question.dart';
 
-class QuestionCompleteCard extends StatelessWidget {
+class QuestionCompleteCard extends StatefulWidget {
   final QuestionComplete question;
-
   final int topic;
 
   QuestionCompleteCard(
       {super.key, required this.question, required this.topic});
 
+  @override
+  _QuestionCompleteCardState createState() => _QuestionCompleteCardState();
+}
+
+class _QuestionCompleteCardState extends State<QuestionCompleteCard> {
   Map<String, TextEditingController> controllers = {};
+
+  late String evaluationResult;
+
+  @override
+  void initState() {
+    super.initState();
+    evaluationResult = '';
+  }
 
   @override
   Widget build(BuildContext context) {
     QuestionCController _controller =
-        Get.put(QuestionCController(topic: topic));
+        Get.put(QuestionCController(topic: widget.topic));
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(15.0),
@@ -29,28 +41,44 @@ class QuestionCompleteCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            question.question,
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            widget.question.question,
+            style: TextStyle(color: Colors.black, fontSize: 13),
           ),
-          putImage(question),
-          SizedBox(height: 30.0),
+          putImage(widget.question),
+          SizedBox(height: 10.0),
           ...List.generate(
-            question.fields.length,
-            (index) => field(question.fields.elementAt(index), controllers),
+            widget.question.fields.length,
+            (index) =>
+                field(widget.question.fields.elementAt(index), controllers),
+          ),
+          SizedBox(
+            height: 5.0,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              bool respuesta = false;
+              for (var key in controllers.keys) {
+                respuesta =
+                    _controller.checkAns(widget.question, controllers[key]);
+                if (!respuesta) break;
+              }
+              setState(() {
+                evaluationResult = respuesta ? 'Correcta' : 'Incorrecta';
+              });
+            },
+            child: Text('EVALUAR'),
           ),
           SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-              onPressed: () {
-                // for (var key in controllers.keys) {
-                //   print('$key: ${controllers[key]?.text}');
-                // }
-                for (var key in controllers.keys) {
-                  _controller.checkAns(question, controllers[key]);
-                }
-              },
-              child: Text("EVALUAR"))
+          Text(
+            evaluationResult,
+            style: TextStyle(
+              color: evaluationResult == 'Correcta' ? Colors.green : Colors.red,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

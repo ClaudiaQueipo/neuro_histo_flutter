@@ -18,8 +18,8 @@ class Topic1Page extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               children: [
                 showCategory(
-                  "Verdadero o Falso",
-                  "Responde preguntas de verdadero o falso para probar tus conocimientos",
+                  "Seleccione",
+                  "Seleccione la respuesta correcta",
                   context,
                   'study/topic1/VF',
                 ),
@@ -38,7 +38,6 @@ class Topic1Page extends StatelessWidget {
                   "study/topic1/Compare",
                 ),
                 SizedBox(height: 15.0),
-                
               ],
             ),
           ),
@@ -62,16 +61,13 @@ class Topic1Page extends StatelessWidget {
             title: Text(title),
             textColor: Colors.white,
             subtitle: Text(subtitle),
+            onTap: () {
+              Navigator.pushNamed(context, route);
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(
-                child: Text("Entrar", style: TextStyle(color: Colors.white)),
-                onPressed: () {
-                  Navigator.pushNamed(context, route);
-                },
-              ),
               SizedBox(width: 15, height: 50),
             ],
           ),
