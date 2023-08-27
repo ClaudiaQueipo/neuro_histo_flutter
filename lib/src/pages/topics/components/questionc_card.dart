@@ -33,54 +33,84 @@ class _QuestionCompleteCardState extends State<QuestionCompleteCard> {
   Widget build(BuildContext context) {
     QuestionCController _controller =
         Get.put(QuestionCController(topic: widget.topic));
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.0),
-      padding: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
-      child: Column(
-        children: [
-          Text(
-            widget.question.question,
-            style: TextStyle(color: Colors.black, fontSize: 13),
+
+    Map<String, TextEditingController> controllers = {};
+
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final double parentWidth = constraints.maxWidth;
+
+        return Container(
+          padding: EdgeInsets.all(parentWidth * 0.05),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(parentWidth * 0.06),
           ),
-          putImage(widget.question),
-          SizedBox(height: 10.0),
-          ...List.generate(
-            widget.question.fields.length,
-            (index) =>
-                field(widget.question.fields.elementAt(index), controllers),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.question.question,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: parentWidth > 600
+                      ? parentWidth * 0.04
+                      : parentWidth * 0.03,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: parentWidth * 0.01),
+              putImage(widget.question),
+              SizedBox(height: parentWidth * 0.01),
+              ...List.generate(
+                widget.question.fields.length,
+                (index) => field(
+                  widget.question.fields.elementAt(index),
+                  controllers,
+                ),
+              ),
+              SizedBox(height: parentWidth * 0.01),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    bool respuesta = false;
+                    for (var key in controllers.keys) {
+                      respuesta = _controller.checkAns(
+                          widget.question, controllers[key]);
+                      if (!respuesta) break;
+                    }
+                    setState(() {
+                      evaluationResult = respuesta ? 'Correcta' : 'Incorrecta';
+                    });
+                  },
+                  child: Text(
+                    'EVALUAR',
+                    style: TextStyle(
+                      fontSize: parentWidth > 600
+                          ? parentWidth * 0.04
+                          : parentWidth * 0.03,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: parentWidth * 0.06),
+              Text(
+                evaluationResult,
+                style: TextStyle(
+                  color: evaluationResult == 'Correcta'
+                      ? Colors.green
+                      : Colors.red,
+                  fontSize: parentWidth > 600
+                      ? parentWidth * 0.06
+                      : parentWidth * 0.04,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            height: 5.0,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              bool respuesta = false;
-              for (var key in controllers.keys) {
-                respuesta =
-                    _controller.checkAns(widget.question, controllers[key]);
-                if (!respuesta) break;
-              }
-              setState(() {
-                evaluationResult = respuesta ? 'Correcta' : 'Incorrecta';
-              });
-            },
-            child: Text('EVALUAR'),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            evaluationResult,
-            style: TextStyle(
-              color: evaluationResult == 'Correcta' ? Colors.green : Colors.red,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -88,20 +118,34 @@ class _QuestionCompleteCardState extends State<QuestionCompleteCard> {
 Widget field(String fieldName, Map<String, TextEditingController> controllers) {
   final controller = TextEditingController();
   controllers[fieldName] = controller; // Agrega el controlador al mapa
-  return Column(
-    children: [
-      TextField(
-        keyboardType: TextInputType.text,
-        controller: controller,
-        decoration: InputDecoration(
-            hintText: fieldName,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
-      ),
-      SizedBox(
-        height: 10,
-      )
-    ],
+  return LayoutBuilder(
+    builder: (BuildContext context, BoxConstraints constraints) {
+      final double parentWidth = constraints.maxWidth;
+
+      return Column(
+        children: [
+          SizedBox(
+            height: parentWidth * 0.03,
+          ),
+          Container(
+            width: parentWidth,
+            child: TextField(
+              keyboardType: TextInputType.text,
+              controller: controller,
+              decoration: InputDecoration(
+                  hintText: fieldName,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15))),
+              style: TextStyle(
+                  fontSize: parentWidth > 600
+                      ? parentWidth * 0.04
+                      : parentWidth * 0.03),
+              // Establece la altura del TextField en porcentaje
+            ),
+          ),
+        ],
+      );
+    },
   );
 }
 

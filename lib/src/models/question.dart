@@ -378,7 +378,7 @@ const List topic2P6 = [
     "image": "assets/tema2p6.jpg",
     "question":
         "Observe el esquema que se muestra a continuación y responda:\n1- El órgano que se representa es:",
-    "options": ["Cerebro", "Cerebelo", "Médula espinal"],
+    "options": ["Cerebro", "Cerebelo"],
     "answer_index": 0
   },
   {
@@ -388,7 +388,6 @@ const List topic2P6 = [
     "options": [
       "Capa granulosa externa",
       "Corteza Cerebral",
-      "Neuronas piramidales gigantes de BETZ",
     ],
     "answer_index": 1
   },
@@ -398,7 +397,6 @@ const List topic2P6 = [
     "question": "Nombre de la estructura #2 señalada en la figura:",
     "options": [
       "Capa molecular",
-      "Neuronas piramidales gigantes de BETZ",
       "Capa piramidal externa",
     ],
     "answer_index": 0
@@ -408,11 +406,10 @@ const List topic2P6 = [
     "image": "assets/tema2p6.jpg",
     "question": "Nombre de la estructura #3 señalada en la figura:",
     "options": [
-      "Corteza Cerebral",
-      "Capa granulosa interna",
       "Capa granulosa externa",
+      "Corteza Cerebral",
     ],
-    "answer_index": 2
+    "answer_index": 0
   },
   {
     "id": 5,
@@ -421,7 +418,6 @@ const List topic2P6 = [
     "options": [
       "Capa granulosa externa",
       "Capa piramidal externa",
-      "Capa de células polimorfas",
     ],
     "answer_index": 1
   },
@@ -431,10 +427,9 @@ const List topic2P6 = [
     "question": "Nombre de la estructura #5 señalada en la figura:",
     "options": [
       "Neuronas piramidales gigantes de BETZ",
-      "Capa piramidal externa",
       "Capa granulosa interna"
     ],
-    "answer_index": 2
+    "answer_index": 1
   },
   {
     "id": 7,
@@ -442,7 +437,6 @@ const List topic2P6 = [
     "question": "Nombre de la estructura #6 señalada en la figura:",
     "options": [
       "Capa piramidal interna",
-      "Capa piramidal externa",
       "Capa de células polimorfas",
     ],
     "answer_index": 0
@@ -454,7 +448,6 @@ const List topic2P6 = [
     "options": [
       "Capa granulosa externa",
       "Capa de células polimorfas",
-      "Corteza Cerebral",
     ],
     "answer_index": 1
   },
@@ -464,10 +457,9 @@ const List topic2P6 = [
     "question": "Nombre de la estructura #8 señalada en la figura:",
     "options": [
       "Corteza Cerebral",
-      "Capa piramidal externa",
       "Neuronas piramidales gigantes de BETZ",
     ],
-    "answer_index": 2
+    "answer_index": 1
   },
   {
     "id": 10,

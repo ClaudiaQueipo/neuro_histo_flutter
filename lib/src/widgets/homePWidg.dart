@@ -12,17 +12,21 @@ myAppBar() {
 
 dynamic myHomeBody() {
   return Container(
+    margin: EdgeInsets.all(10),
+    padding: EdgeInsets.all(10),
     child: Column(
       children: [
-        homeInfo(),
+        Expanded(
+          child: homeInfo(),
+        ),
         SizedBox(
           height: 20,
         ),
-        presentCard()
+        Flexible(
+          child: presentCard(),
+        ),
       ],
     ),
-    margin: EdgeInsets.all(10),
-    padding: EdgeInsets.all(10),
   );
 }
 
@@ -63,12 +67,11 @@ Widget homeInfo() {
   return Container(
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(8.0),
-      height: 300,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             image: AssetImage('assets/home_img.jpg'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           )));
 }
 

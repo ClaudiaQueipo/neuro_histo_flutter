@@ -77,7 +77,7 @@ const List topic2Complete = [
     "image": "assets/tema2p8.png",
     "question": "En la siguiente fotomicrografía óptica escriba:",
     "answer": ["impregnacion argentica", "o sales de plata", "cerebro"],
-    "fields": ["Tinción empleada", "Órgano al que pertenece"]
+    "fields": ["ión empleada", "Órgano al que pertenece"]
   },
   {
     "id": 2,

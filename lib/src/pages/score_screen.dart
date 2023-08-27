@@ -14,7 +14,8 @@ class ScoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // QuestionController qnController = Get.put(QuestionController());
     if (qnController is QuestionController) {
-      QuestionController qnController = Get.put(QuestionController(topic: topic));
+      QuestionController qnController =
+          Get.put(QuestionController(topic: topic));
       return Scaffold(
         body: Stack(
           fit: StackFit.expand,
@@ -31,7 +32,7 @@ class ScoreScreen extends StatelessWidget {
                 ),
                 Spacer(),
                 Text(
-                  "${qnController.numOfCorrectAns * 10}/${100}",
+                  "${qnController.numOfCorrectAns}/${qnController.questions.length}",
                   style: Theme.of(context)
                       .textTheme
                       .headline4
@@ -45,7 +46,8 @@ class ScoreScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 32, 37, 69),
       );
     } else {
-      QuestionCController qnController = Get.put(QuestionCController(topic: topic));
+      QuestionCController qnController =
+          Get.put(QuestionCController(topic: topic));
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 121, 76, 227).withOpacity(0.4),

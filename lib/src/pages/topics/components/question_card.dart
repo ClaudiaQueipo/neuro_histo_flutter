@@ -13,34 +13,54 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController(topic: topic));
-   
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.0),
-      padding: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
-      child: Column(
-        children: [
-          Text(
-            question.question,
-            style: TextStyle(color: Colors.black, fontSize: 13),
-          ),
-          putImage(question),
-          SizedBox(height: 10.0),
-          ...List.generate(
-              question.options.length,
-              (index) => Option(
+  QuestionController _controller = Get.put(QuestionController(topic: topic));
+
+  final deviceWidth = MediaQuery.of(context).size.width;
+  final scaleFactor = deviceWidth < 600 ? 0.8 : 1.0; // Factor de escala
+
+  return ListView.builder(
+    itemCount: 1, // Solo habrá una pregunta en la lista
+    itemBuilder: (BuildContext context, int index) {
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: deviceWidth * 0.04),
+        padding: EdgeInsets.all(deviceWidth * 0.05),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(deviceWidth * 0.1),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              question.question,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: deviceWidth * 0.04 * scaleFactor,
+              ),
+            ),
+            putImage(question),
+            SizedBox(height: deviceWidth * 0.01),
+            ListView.builder(
+              shrinkWrap: true,
+              // physics: NeverScrollableScrollPhysics(),
+              itemCount: question.options.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Option(
                   text: question.options[index],
                   index: index,
                   topic: topic,
                   press: () {
                     _controller.checkAns(question, index);
-                  }))
-        ],
-      ),
-    );
-  }
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 }
 
 Widget putImage(Question question) {

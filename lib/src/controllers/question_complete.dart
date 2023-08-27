@@ -46,7 +46,7 @@ class QuestionCController extends GetxController
   @override
   void onInit() {
     _animationController =
-        AnimationController(duration: Duration(seconds: 30), vsync: this);
+        AnimationController(duration: Duration(seconds: 60), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
         update();
@@ -145,7 +145,7 @@ class QuestionCController extends GetxController
       // Get package provide us simple way to naviigate another page
       Get.to(() => ScoreScreen(
             qnController: QuestionCController(topic: topic),
-            topic: 0,
+            topic: topic,
           ));
     }
   }

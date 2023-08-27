@@ -19,61 +19,67 @@ class Option extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
-        init: QuestionController(topic: topic),
-        builder: (qnController) {
-          Color getTheRightColor() {
-            if (qnController.isAnswered) {
-              if (index == qnController.correctAns) {
-                return Color(0xFF6AC259);
-              } else if (index == qnController.selectedAns &&
-                  qnController.selectedAns != qnController.correctAns) {
-                return Color(0xFFE92E30);
-              }
+      init: QuestionController(topic: topic),
+      builder: (qnController) {
+        Color getTheRightColor() {
+          if (qnController.isAnswered) {
+            if (index == qnController.correctAns) {
+              return Color(0xFF6AC259);
+            } else if (index == qnController.selectedAns &&
+                qnController.selectedAns != qnController.correctAns) {
+              return Color(0xFFE92E30);
             }
-            return Color(0xFFC1C1C1);
           }
+          return Color(0xFFC1C1C1);
+        }
 
-          IconData getTheRightIcon() {
-            return getTheRightColor() == Color(0xFFE92E30)
-                ? Icons.close
-                : Icons.done;
-          }
+        IconData getTheRightIcon() {
+          return getTheRightColor() == Color(0xFFE92E30)
+              ? Icons.close
+              : Icons.done;
+        }
 
-          return InkWell(
-            onTap: press,
-            child: Container(
-              margin: EdgeInsets.only(top: 20.0),
-              padding: EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: getTheRightColor(),
-                  ),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+        final deviceWidth = MediaQuery.of(context).size.width;
+
+        return InkWell(
+          onTap: press,
+          child: Container(
+            margin: EdgeInsets.only(top: deviceWidth * 0.04),
+            padding: EdgeInsets.all(deviceWidth * 0.05),
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: getTheRightColor(),
+                ),
+                borderRadius: BorderRadius.circular(deviceWidth * 0.07)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    // Agregamos un Expanded para expandir el espacio disponible
+                    child: Text(
                       "${index + 1} $text",
                       style: TextStyle(
                           color: Color.fromARGB(255, 180, 180, 180),
-                          fontSize: 12),
+                          fontSize: deviceWidth * 0.04),
                     ),
-                    Container(
-                      height: 26,
-                      width: 26,
-                      decoration: BoxDecoration(
-                          color: getTheRightColor() == Color(0xFFC1C1C1)
-                              ? Colors.transparent
-                              : getTheRightColor(),
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(color: getTheRightColor())),
-                      child: getTheRightColor() == Color(0xFFC1C1C1)
-                          ? null
-                          : Icon(getTheRightIcon(), size: 16),
-                    )
-                  ]),
-            ),
-          );
-        });
+                  ),
+                  Container(
+                    height: deviceWidth * 0.1,
+                    width: deviceWidth * 0.1,
+                    decoration: BoxDecoration(
+                        color: getTheRightColor() == Color(0xFFC1C1C1)
+                            ? Colors.transparent
+                            : getTheRightColor(),
+                        borderRadius: BorderRadius.circular(deviceWidth * 0.2),
+                        border: Border.all(color: getTheRightColor())),
+                    child: getTheRightColor() == Color(0xFFC1C1C1)
+                        ? null
+                        : Icon(getTheRightIcon(), size: deviceWidth * 0.04),
+                  ),
+                ]),
+          ),
+        );
+      },
+    );
   }
 }
