@@ -3,20 +3,21 @@ import 'dart:ui';
 import 'package:components_app/src/controllers/question_complete.dart';
 import 'package:get/get.dart';
 import 'package:components_app/src/pages/topics/components/progress_bar.dart';
-import 'package:components_app/src/pages/topics/components/questionC_card.dart';
+import 'package:components_app/src/pages/topics/components/questionc_card.dart';
 import 'package:flutter/material.dart';
-
-import '../../../models/question.dart';
 
 class Body extends StatelessWidget {
   final int topic;
-  const Body({super.key, required this.topic});
+  const Body({Key? key, required this.topic});
 
   @override
   Widget build(BuildContext context) {
     QuestionCController _questionController =
         Get.put(QuestionCController(topic: topic));
     Map<String, TextEditingController> controllers = {};
+
+    TextEditingController textController =
+        TextEditingController(); // Add this line
 
     return SafeArea(
       child: Column(
@@ -69,6 +70,9 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          TextField(
+            controller: textController, // Add this line
           ),
         ],
       ),

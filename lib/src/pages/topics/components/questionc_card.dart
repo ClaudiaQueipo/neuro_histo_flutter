@@ -10,11 +10,11 @@ class QuestionCompleteCard extends StatelessWidget {
   final QuestionComplete question;
   Map<String, TextEditingController> controllers = {};
 
-  QuestionCompleteCard({super.key, required this.question});
+  QuestionCompleteCard({super.key, required this.question, required int topic});
 
   @override
   Widget build(BuildContext context) {
-    QuestionCController _controller = Get.put(QuestionCController());
+    QuestionCController _controller = Get.put(QuestionCController(topic: 1));
     return ListView(
       children: [
         Container(

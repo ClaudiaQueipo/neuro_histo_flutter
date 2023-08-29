@@ -24,6 +24,7 @@ class Topic1Comp extends StatelessWidget {
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                     Color.fromARGB(255, 62, 46, 121)))),
+
         actions: [
           TextButton(
               onPressed: () {

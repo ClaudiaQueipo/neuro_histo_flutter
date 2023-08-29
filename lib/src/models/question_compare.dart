@@ -11,6 +11,7 @@ class QuestionCompare {
       required this.fields});
 }
 
+
 const List questionsCompare = [
   {
     // La respuesta del axon es la primera y la segunda es la de la dentrita

@@ -117,7 +117,7 @@ class QuestionCController extends GetxController
       }
     }
 
-    print("numero aciertos: $_numOfCorrectAns");
+    // print("numero aciertos: $_numOfCorrectAns");
     // It will stop the counter
     _animationController.stop();
     update();
@@ -142,7 +142,7 @@ class QuestionCController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
+      // Get package provide us simple way to navigate another page
       Get.to(() => ScoreScreen(
             qnController: QuestionCController(topic: topic),
             topic: topic,

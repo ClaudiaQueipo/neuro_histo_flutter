@@ -6,7 +6,7 @@ import 'package:components_app/src/pages/topics/components/question_card_compare
 import 'package:get/get.dart';
 import 'package:components_app/src/controllers/question_controller.dart';
 import 'package:components_app/src/pages/topics/components/progress_bar.dart';
-import 'package:components_app/src/pages/topics/components/questionC_card.dart';
+import 'package:components_app/src/pages/topics/components/questionc_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/question.dart';
